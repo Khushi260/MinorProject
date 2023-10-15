@@ -26,10 +26,10 @@ export const userSignup = async (
         const hashedPassword = await hash(password, 10);
         const user = new User({ name, email, password: hashedPassword });
         await user.save();
-        res.status(200).json({ message: "OK", id: user._id.toString() });
+        res.status(201).json({ message: "OK", id: user._id.toString() });
     } catch (error) {
 
         console.error(error);
-        res.status(500).json({ error: "Internal server error", cause: error.message });
+        res.status(200).json({ error: "Error", cause: error.message });
     }
 };
