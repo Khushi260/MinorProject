@@ -1,6 +1,15 @@
-import { Box, Typography } from "@mui/material";
+import { Box, Typography, Button } from "@mui/material";
+import { IoIosLogIn } from "react-icons/io";
+import CustomizedInput from "../components/shared/CustomizedInput";
 
 const Login = () => {
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    const formData = new FormData(e.currentTarget);
+    const email = formData.get("email") as string;
+    const password = formData.get("password") as string;
+
+  };
   return (
     <Box width={"100%"} height={"100%"} display={"flex"} flex={1}>
       <Box padding={8} mt={8} display={{ md: "flex", sm: "none", xs: "none" }}>
@@ -16,6 +25,7 @@ const Login = () => {
         mt={16}
       >
         <form
+        onSubmit={handleSubmit}
           style={{
             margin: 'auto',
             padding: '30px',
@@ -27,6 +37,26 @@ const Login = () => {
             <Typography variant="h4" textAlign="center" padding={2} fontWeight={600}>
               Login
             </Typography>
+            <CustomizedInput type="email" name="email" label="Email" />
+            <CustomizedInput type="password" name="password" label="Password" />
+            <Button
+              type="submit"
+              sx={{
+                px: 2,
+                py: 1,
+                mt: 2,
+                width: "400px",
+                borderRadius: 2,
+                bgcolor: "#00fffc",
+                ":hover": {
+                  bgcolor: "white",
+                  color: "black",
+                },
+              }}
+              endIcon={<IoIosLogIn />}
+            >
+              Login
+            </Button>
           </Box>
         </form>
       </Box>
