@@ -1,6 +1,7 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable react-refresh/only-export-components */
 import { ReactNode, useContext, createContext, useEffect, useState } from "react";
+import { loginUser } from "../helpers/api-communicators";
 
 type User = {
     name: string;
@@ -27,7 +28,10 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     }, []);
 
     const login = async (email: string, password: string) => {
-        // Implement the login logic here
+       const data = await loginUser(email,password);
+       if(data){
+        // setUser(email: data.email, name:data.name);
+       }
     };
 
     const signup = async (name: string, email: string, password: string) => {
